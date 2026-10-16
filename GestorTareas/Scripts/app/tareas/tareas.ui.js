@@ -31,6 +31,12 @@
         $item.find('.js-fecha').text(tarea.FechaCreacion);
         marcarCompletada($item, tarea.Completada);
 
+        $item.find('.js-edit-titulo').val(tarea.Titulo);
+        $item.find('.js-edit-descripcion').val(tarea.Descripcion);
+        $item.find('[maxlength]').each(function () {
+            actualizarConteo(this);
+        });
+
         return $item;
     }
 
@@ -50,6 +56,22 @@
         });
 
         $vacio.prop('hidden', tareas.length > 0);
+    }
+
+    function mostrarEdicion($item, mostrar) {
+        $item.find('.js-vista').prop('hidden', mostrar);
+        $item.find('.js-form-editar').prop('hidden', !mostrar);
+
+        if (mostrar) {
+            $item.find('.js-edit-titulo').trigger('focus');
+        } else {
+            $item.find('.js-edit-titulo').val($item.find('.js-titulo').text());
+            $item.find('.js-edit-descripcion').val($item.find('.js-descripcion').text());
+            $item.find('.js-form-editar [maxlength]').each(function () {
+                actualizarConteo(this);
+            });
+            $item.find('.js-editar').trigger('focus');
+        }
     }
 
     function actualizarConteo(campo) {
@@ -94,6 +116,7 @@
         inicializar: inicializar,
         renderizarLista: renderizarLista,
         marcarCompletada: marcarCompletada,
+        mostrarEdicion: mostrarEdicion,
         actualizarConteo: actualizarConteo,
         marcarOcupado: marcarOcupado,
         enfocarTarea: enfocarTarea,

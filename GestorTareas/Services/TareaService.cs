@@ -47,6 +47,27 @@ namespace GestorTareas.Services
             return ResultadoOperacion.Ok("Tarea creada.", TareaDto.Desde(tarea));
         }
 
+        public ResultadoOperacion Editar(int id, string titulo, string descripcion)
+        {
+            Tarea tarea = _repositorio.ObtenerPorId(id);
+            if (tarea == null)
+            {
+                return ResultadoOperacion.Error(MensajeNoExiste);
+            }
+
+            string error = Validar(titulo, descripcion);
+            if (error != null)
+            {
+                return ResultadoOperacion.Error(error);
+            }
+
+            tarea.Titulo = titulo.Trim();
+            tarea.Descripcion = descripcion.Trim();
+            _repositorio.Actualizar(tarea);
+
+            return ResultadoOperacion.Ok("Tarea actualizada.", TareaDto.Desde(tarea));
+        }
+
         public ResultadoOperacion CambiarEstado(int id)
         {
             Tarea tarea = _repositorio.ObtenerPorId(id);

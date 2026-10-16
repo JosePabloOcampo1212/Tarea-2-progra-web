@@ -11,6 +11,7 @@
         urls = {
             listar: $app.attr('data-url-listar'),
             crear: $app.attr('data-url-crear'),
+            editar: $app.attr('data-url-editar'),
             cambiarEstado: $app.attr('data-url-cambiar-estado')
         };
 
@@ -40,6 +41,10 @@
 
         crear: function (titulo, descripcion) {
             return enviarPost(urls.crear, { titulo: titulo, descripcion: descripcion });
+        },
+
+        editar: function (id, titulo, descripcion) {
+            return enviarPost(urls.editar, { id: id, titulo: titulo, descripcion: descripcion });
         },
 
         cambiarEstado: function (id) {

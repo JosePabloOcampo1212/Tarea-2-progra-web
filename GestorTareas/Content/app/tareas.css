@@ -172,6 +172,30 @@
     cursor: progress;
 }
 
+.gt-btn-icono {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--gt-radio-chico);
+    background: transparent;
+    color: var(--gt-texto-suave);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.gt-btn-icono svg {
+    width: 17px;
+    height: 17px;
+}
+
+.gt-btn-icono:hover {
+    background: var(--gt-superficie-2);
+    color: var(--gt-texto);
+}
+
 .gt-lista {
     display: flex;
     flex-direction: column;
@@ -193,6 +217,11 @@
 
 .gt-tarea:hover {
     border-color: var(--gt-borde-fuerte);
+}
+
+.gt-tarea:has(.gt-edicion:not([hidden])) {
+    border-color: var(--gt-primario);
+    box-shadow: 0 0 0 3px var(--gt-primario-suave);
 }
 
 .gt-vista {
@@ -271,6 +300,20 @@
     color: var(--gt-texto-suave);
 }
 
+.gt-acciones {
+    display: flex;
+    gap: 2px;
+    flex-shrink: 0;
+    margin: -6px -6px 0 0;
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+.gt-tarea:hover .gt-acciones,
+.gt-tarea:focus-within .gt-acciones {
+    opacity: 1;
+}
+
 .gt-completada {
     background: var(--gt-superficie-2);
     box-shadow: none;
@@ -288,6 +331,16 @@
 .gt-completada .gt-insignia {
     background: var(--gt-exito-suave);
     color: var(--gt-exito);
+}
+
+.gt-edicion .gt-campo {
+    margin-bottom: 12px;
+}
+
+.gt-edicion-acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
 }
 
 .gt-esqueleto {
@@ -406,6 +459,12 @@
 
     .gt-vista {
         flex-wrap: wrap;
+    }
+}
+
+@media (hover: none) {
+    .gt-acciones {
+        opacity: 1;
     }
 }
 

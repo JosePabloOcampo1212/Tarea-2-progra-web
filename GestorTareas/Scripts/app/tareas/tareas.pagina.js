@@ -99,6 +99,38 @@
                 });
         });
 
+        $app.on('click', '.js-editar', function () {
+            Tareas.ui.mostrarEdicion($(this).closest('.gt-tarea'), true);
+        });
+
+        $app.on('click', '.js-cancelar', function () {
+            Tareas.ui.mostrarEdicion($(this).closest('.gt-tarea'), false);
+        });
+
+        $app.on('submit', '.js-form-editar', function (evento) {
+            evento.preventDefault();
+
+            var $item = $(this).closest('.gt-tarea');
+
+            procesarOperacion(Tareas.api.editar(
+                idDeTarea(this),
+                $item.find('.js-edit-titulo').val(),
+                $item.find('.js-edit-descripcion').val()
+            ), $(this).find('[type="submit"]'));
+        });
+
+        $app.on('keydown', '.gt-tarea', function (evento) {
+            if (evento.key !== 'Escape') {
+                return;
+            }
+
+            var $item = $(this);
+
+            if (!$item.find('.js-form-editar').prop('hidden')) {
+                Tareas.ui.mostrarEdicion($item, false);
+            }
+        });
+
         cargarTareas();
     });
 })(window, jQuery);

@@ -48,6 +48,13 @@ namespace GestorTareas.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public JsonResult Editar(int id, string titulo, string descripcion)
+        {
+            return Json(Servicio.Editar(id, titulo, descripcion));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public JsonResult CambiarEstado(int id)
         {
             return Json(Servicio.CambiarEstado(id));
