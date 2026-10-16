@@ -59,6 +59,7 @@
     }
 
     function mostrarEdicion($item, mostrar) {
+        mostrarConfirmacion($item, false, true);
         $item.find('.js-vista').prop('hidden', mostrar);
         $item.find('.js-form-editar').prop('hidden', !mostrar);
 
@@ -72,6 +73,17 @@
             });
             $item.find('.js-editar').trigger('focus');
         }
+    }
+
+    function mostrarConfirmacion($item, mostrar, sinFoco) {
+        $item.find('.js-acciones').prop('hidden', mostrar);
+        $item.find('.js-confirmacion').prop('hidden', !mostrar);
+
+        if (sinFoco) {
+            return;
+        }
+
+        $item.find(mostrar ? '.js-confirmar-no' : '.js-eliminar').trigger('focus');
     }
 
     function actualizarConteo(campo) {
@@ -117,6 +129,7 @@
         renderizarLista: renderizarLista,
         marcarCompletada: marcarCompletada,
         mostrarEdicion: mostrarEdicion,
+        mostrarConfirmacion: mostrarConfirmacion,
         actualizarConteo: actualizarConteo,
         marcarOcupado: marcarOcupado,
         enfocarTarea: enfocarTarea,

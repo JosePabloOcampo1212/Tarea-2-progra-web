@@ -12,7 +12,8 @@
             listar: $app.attr('data-url-listar'),
             crear: $app.attr('data-url-crear'),
             editar: $app.attr('data-url-editar'),
-            cambiarEstado: $app.attr('data-url-cambiar-estado')
+            cambiarEstado: $app.attr('data-url-cambiar-estado'),
+            eliminar: $app.attr('data-url-eliminar')
         };
 
         token = $app.find('input[name="__RequestVerificationToken"]').val();
@@ -49,6 +50,10 @@
 
         cambiarEstado: function (id) {
             return enviarPost(urls.cambiarEstado, { id: id });
+        },
+
+        eliminar: function (id) {
+            return enviarPost(urls.eliminar, { id: id });
         }
     };
 })(window, jQuery);

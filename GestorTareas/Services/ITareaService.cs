@@ -13,5 +13,7 @@ namespace GestorTareas.Services
         ResultadoOperacion Editar(int id, string titulo, string descripcion);
 
         ResultadoOperacion CambiarEstado(int id);
+
+        ResultadoOperacion Eliminar(int id);
     }
 }

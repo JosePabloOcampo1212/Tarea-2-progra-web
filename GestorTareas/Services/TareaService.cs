@@ -86,6 +86,15 @@ namespace GestorTareas.Services
             return ResultadoOperacion.Ok(mensaje, TareaDto.Desde(tarea));
         }
 
+        public ResultadoOperacion Eliminar(int id)
+        {
+            bool eliminada = _repositorio.Eliminar(id);
+
+            return eliminada
+                ? ResultadoOperacion.Ok("Tarea eliminada.")
+                : ResultadoOperacion.Error(MensajeNoExiste);
+        }
+
         private static string Validar(string titulo, string descripcion)
         {
             if (string.IsNullOrWhiteSpace(titulo))

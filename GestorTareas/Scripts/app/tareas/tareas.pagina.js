@@ -119,6 +119,18 @@
             ), $(this).find('[type="submit"]'));
         });
 
+        $app.on('click', '.js-eliminar', function () {
+            Tareas.ui.mostrarConfirmacion($(this).closest('.gt-tarea'), true);
+        });
+
+        $app.on('click', '.js-confirmar-no', function () {
+            Tareas.ui.mostrarConfirmacion($(this).closest('.gt-tarea'), false);
+        });
+
+        $app.on('click', '.js-confirmar-si', function () {
+            procesarOperacion(Tareas.api.eliminar(idDeTarea(this)), $(this));
+        });
+
         $app.on('keydown', '.gt-tarea', function (evento) {
             if (evento.key !== 'Escape') {
                 return;
@@ -128,6 +140,8 @@
 
             if (!$item.find('.js-form-editar').prop('hidden')) {
                 Tareas.ui.mostrarEdicion($item, false);
+            } else if (!$item.find('.js-confirmacion').prop('hidden')) {
+                Tareas.ui.mostrarConfirmacion($item, false);
             }
         });
 

@@ -59,5 +59,12 @@ namespace GestorTareas.Controllers
         {
             return Json(Servicio.CambiarEstado(id));
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult Eliminar(int id)
+        {
+            return Json(Servicio.Eliminar(id));
+        }
     }
 }

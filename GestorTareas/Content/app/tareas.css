@@ -162,9 +162,25 @@
     border-color: var(--gt-primario-hover);
 }
 
+.gt-btn-peligro {
+    background: var(--gt-peligro);
+    border-color: var(--gt-peligro);
+    color: #fff;
+}
+
+.gt-btn-peligro:hover {
+    background: var(--gt-peligro);
+    opacity: 0.9;
+}
+
 .gt-btn-bloque {
     width: 100%;
     padding: 10px 16px;
+}
+
+.gt-btn-chico {
+    padding: 4px 10px;
+    font-size: 0.8rem;
 }
 
 .gt-btn:disabled {
@@ -194,6 +210,11 @@
 .gt-btn-icono:hover {
     background: var(--gt-superficie-2);
     color: var(--gt-texto);
+}
+
+.gt-btn-icono-peligro:hover {
+    background: var(--gt-peligro-suave);
+    color: var(--gt-peligro);
 }
 
 .gt-lista {
@@ -312,6 +333,19 @@
 .gt-tarea:hover .gt-acciones,
 .gt-tarea:focus-within .gt-acciones {
     opacity: 1;
+}
+
+.gt-confirmacion {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    padding: 4px 4px 4px 12px;
+    border-radius: var(--gt-radio-chico);
+    background: var(--gt-peligro-suave);
+    color: var(--gt-peligro);
+    font-size: 0.85rem;
+    font-weight: 600;
 }
 
 .gt-completada {
@@ -459,6 +493,11 @@
 
     .gt-vista {
         flex-wrap: wrap;
+    }
+
+    .gt-confirmacion {
+        width: 100%;
+        justify-content: flex-end;
     }
 }
 
