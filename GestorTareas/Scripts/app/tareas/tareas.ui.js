@@ -29,8 +29,17 @@
         $item.find('.js-titulo').text(tarea.Titulo);
         $item.find('.js-descripcion').text(tarea.Descripcion);
         $item.find('.js-fecha').text(tarea.FechaCreacion);
+        marcarCompletada($item, tarea.Completada);
 
         return $item;
+    }
+
+    function marcarCompletada($item, completada) {
+        $item.toggleClass('gt-completada', completada);
+        $item.find('.js-estado-texto').text(completada ? 'Completada' : 'Pendiente');
+        $item.find('.js-estado')
+            .prop('checked', completada)
+            .attr('aria-label', completada ? 'Marcar como pendiente' : 'Marcar como completada');
     }
 
     function renderizarLista(tareas) {
@@ -57,6 +66,10 @@
         $boton.prop('disabled', ocupado).attr('aria-busy', ocupado ? 'true' : 'false');
     }
 
+    function enfocarTarea(id, selector) {
+        $lista.children('[data-id="' + id + '"]').find(selector).trigger('focus');
+    }
+
     function mostrarMensaje(texto, tipo) {
         if (!texto) {
             return;
@@ -80,8 +93,10 @@
     Tareas.ui = {
         inicializar: inicializar,
         renderizarLista: renderizarLista,
+        marcarCompletada: marcarCompletada,
         actualizarConteo: actualizarConteo,
         marcarOcupado: marcarOcupado,
+        enfocarTarea: enfocarTarea,
         mostrarMensaje: mostrarMensaje
     };
 })(window, jQuery);

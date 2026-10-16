@@ -10,7 +10,8 @@
     function configurar($app) {
         urls = {
             listar: $app.attr('data-url-listar'),
-            crear: $app.attr('data-url-crear')
+            crear: $app.attr('data-url-crear'),
+            cambiarEstado: $app.attr('data-url-cambiar-estado')
         };
 
         token = $app.find('input[name="__RequestVerificationToken"]').val();
@@ -39,6 +40,10 @@
 
         crear: function (titulo, descripcion) {
             return enviarPost(urls.crear, { titulo: titulo, descripcion: descripcion });
+        },
+
+        cambiarEstado: function (id) {
+            return enviarPost(urls.cambiarEstado, { id: id });
         }
     };
 })(window, jQuery);

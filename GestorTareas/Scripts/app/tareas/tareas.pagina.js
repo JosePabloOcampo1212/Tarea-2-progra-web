@@ -47,6 +47,10 @@
         Tareas.ui.mostrarMensaje('No se pudo completar la operación. Intente de nuevo.', 'error');
     }
 
+    function idDeTarea(elemento) {
+        return $(elemento).closest('.gt-tarea').attr('data-id');
+    }
+
     $(function () {
         var $app = $('#app-tareas');
         var $formCrear = $('#form-crear');
@@ -81,6 +85,17 @@
                         });
                         $(formulario).find('[name="titulo"]').trigger('focus');
                     }
+                });
+        });
+
+        $app.on('change', '.js-estado', function () {
+            var id = idDeTarea(this);
+
+            Tareas.ui.marcarCompletada($(this).closest('.gt-tarea'), this.checked);
+
+            procesarOperacion(Tareas.api.cambiarEstado(id))
+                .done(function () {
+                    Tareas.ui.enfocarTarea(id, '.js-estado');
                 });
         });
 

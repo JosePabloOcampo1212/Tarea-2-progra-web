@@ -201,6 +201,33 @@
     gap: 14px;
 }
 
+.gt-check {
+    appearance: none;
+    -webkit-appearance: none;
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    margin: 1px 0 0;
+    border: 2px solid var(--gt-borde-fuerte);
+    border-radius: 50%;
+    background: var(--gt-superficie);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.gt-check:hover {
+    border-color: var(--gt-exito);
+}
+
+.gt-check:checked {
+    border-color: var(--gt-exito);
+    background: var(--gt-exito)
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E")
+        center / 13px no-repeat;
+}
+
 .gt-contenido {
     flex: 1;
     min-width: 0;
@@ -229,11 +256,38 @@
     font-size: 0.8rem;
 }
 
+.gt-insignia {
+    padding: 1px 9px;
+    border-radius: 999px;
+    background: var(--gt-primario-suave);
+    color: var(--gt-primario);
+    font-weight: 600;
+}
+
 .gt-fecha {
     display: inline-flex;
     align-items: center;
     gap: 5px;
     color: var(--gt-texto-suave);
+}
+
+.gt-completada {
+    background: var(--gt-superficie-2);
+    box-shadow: none;
+}
+
+.gt-completada .gt-titulo {
+    color: var(--gt-texto-suave);
+    text-decoration: line-through;
+}
+
+.gt-completada .gt-descripcion {
+    opacity: 0.7;
+}
+
+.gt-completada .gt-insignia {
+    background: var(--gt-exito-suave);
+    color: var(--gt-exito);
 }
 
 .gt-esqueleto {

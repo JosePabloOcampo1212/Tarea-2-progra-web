@@ -9,5 +9,7 @@ namespace GestorTareas.Services
         IList<Tarea> Listar();
 
         ResultadoOperacion Crear(string titulo, string descripcion);
+
+        ResultadoOperacion CambiarEstado(int id);
     }
 }

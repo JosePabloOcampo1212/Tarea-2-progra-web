@@ -12,6 +12,8 @@ namespace GestorTareas.Services
 
         public const int MaximoDescripcion = 500;
 
+        private const string MensajeNoExiste = "La tarea no existe o ya fue eliminada.";
+
         private readonly ITareaRepositorio _repositorio;
 
         public TareaService(ITareaRepositorio repositorio)
@@ -43,6 +45,24 @@ namespace GestorTareas.Services
             _repositorio.Agregar(tarea);
 
             return ResultadoOperacion.Ok("Tarea creada.", TareaDto.Desde(tarea));
+        }
+
+        public ResultadoOperacion CambiarEstado(int id)
+        {
+            Tarea tarea = _repositorio.ObtenerPorId(id);
+            if (tarea == null)
+            {
+                return ResultadoOperacion.Error(MensajeNoExiste);
+            }
+
+            tarea.Completada = !tarea.Completada;
+            _repositorio.Actualizar(tarea);
+
+            string mensaje = tarea.Completada
+                ? "Tarea marcada como completada."
+                : "Tarea marcada como pendiente.";
+
+            return ResultadoOperacion.Ok(mensaje, TareaDto.Desde(tarea));
         }
 
         private static string Validar(string titulo, string descripcion)
