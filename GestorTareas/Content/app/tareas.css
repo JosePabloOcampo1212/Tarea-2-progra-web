@@ -1,0 +1,226 @@
+.gt-app [hidden] {
+    display: none !important;
+}
+
+.gt-app {
+    color: var(--gt-texto);
+}
+
+.gt-icono {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+}
+
+.gt-encabezado {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 28px;
+}
+
+.gt-fecha-hoy {
+    margin: 0 0 2px;
+    color: var(--gt-primario);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.gt-fecha-hoy::first-letter {
+    text-transform: uppercase;
+}
+
+.gt-encabezado h1 {
+    margin: 0;
+    font-size: 2rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+.gt-subtitulo {
+    margin: 4px 0 0;
+    color: var(--gt-texto-suave);
+}
+
+.gt-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.gt-tarea {
+    padding: 16px;
+    border: 1px solid var(--gt-borde);
+    border-radius: var(--gt-radio);
+    background: var(--gt-superficie);
+    box-shadow: var(--gt-sombra);
+    transition: border-color 0.15s, box-shadow 0.15s;
+    animation: gt-aparecer 0.2s ease-out;
+}
+
+.gt-tarea:hover {
+    border-color: var(--gt-borde-fuerte);
+}
+
+.gt-vista {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.gt-contenido {
+    flex: 1;
+    min-width: 0;
+}
+
+.gt-titulo {
+    margin: 0 0 2px;
+    font-size: 1rem;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.gt-descripcion {
+    margin: 0 0 10px;
+    color: var(--gt-texto-suave);
+    font-size: 0.925rem;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+}
+
+.gt-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 14px;
+    font-size: 0.8rem;
+}
+
+.gt-fecha {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--gt-texto-suave);
+}
+
+.gt-esqueleto {
+    height: 92px;
+    border-radius: var(--gt-radio);
+    background: linear-gradient(90deg, var(--gt-superficie-2) 25%, var(--gt-borde) 50%, var(--gt-superficie-2) 75%);
+    background-size: 200% 100%;
+    animation: gt-brillo 1.3s linear infinite;
+}
+
+.gt-vacio {
+    padding: 48px 24px;
+    border: 2px dashed var(--gt-borde);
+    border-radius: var(--gt-radio);
+    text-align: center;
+}
+
+.gt-vacio-icono {
+    display: inline-grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 12px;
+    border-radius: 50%;
+    background: var(--gt-primario-suave);
+    color: var(--gt-primario);
+}
+
+.gt-vacio-icono svg {
+    width: 26px;
+    height: 26px;
+}
+
+.gt-vacio-titulo {
+    margin: 0 0 4px;
+    font-weight: 600;
+}
+
+.gt-vacio-texto {
+    margin: 0;
+    color: var(--gt-texto-suave);
+    font-size: 0.9rem;
+}
+
+.gt-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: calc(100% - 32px);
+    padding: 12px 18px;
+    border-radius: var(--gt-radio);
+    background: var(--gt-texto);
+    color: var(--gt-fondo);
+    box-shadow: var(--gt-sombra-alta);
+    font-size: 0.925rem;
+    font-weight: 500;
+    transform: translateX(-50%);
+    animation: gt-subir 0.25s ease-out;
+}
+
+.gt-toast::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.gt-mensaje-exito::before {
+    background: var(--gt-exito);
+}
+
+.gt-mensaje-error::before {
+    background: var(--gt-peligro);
+}
+
+@keyframes gt-subir {
+    from { opacity: 0; transform: translate(-50%, 12px); }
+    to   { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes gt-aparecer {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes gt-brillo {
+    from { background-position: 200% 0; }
+    to   { background-position: -200% 0; }
+}
+
+@media (max-width: 860px) {
+    .gt-encabezado {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+@media (max-width: 480px) {
+    .gt-encabezado h1 {
+        font-size: 1.6rem;
+    }
+
+    .gt-vista {
+        flex-wrap: wrap;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gt-app *,
+    .gt-app *::before {
+        animation: none !important;
+        transition: none !important;
+    }
+}

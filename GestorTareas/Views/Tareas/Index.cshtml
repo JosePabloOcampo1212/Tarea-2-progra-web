@@ -1,5 +1,48 @@
 @{
     ViewBag.Title = "Mis tareas";
+    var hoy = DateTime.Now.ToString("dddd d 'de' MMMM", new System.Globalization.CultureInfo("es-ES"));
 }
 
-<h1>Hola mundo</h1>
+@section estilos {
+    <link rel="stylesheet" href="@Url.Content("~/Content/app/tareas.css")" />
+}
+
+<div id="app-tareas" class="gt-app"
+     data-url-listar="@Url.Action("Listar", "Tareas")">
+
+    <header class="gt-encabezado">
+        <div>
+            <p class="gt-fecha-hoy">@hoy</p>
+            <h1>Mis tareas</h1>
+            <p class="gt-subtitulo">Registre sus pendientes y lleve control de su progreso.</p>
+        </div>
+    </header>
+
+    <div class="gt-layout">
+        <section class="gt-principal" aria-label="Lista de tareas">
+            <ul id="lista-tareas" class="gt-lista" aria-busy="true">
+                <li class="gt-esqueleto" aria-hidden="true"></li>
+                <li class="gt-esqueleto" aria-hidden="true"></li>
+                <li class="gt-esqueleto" aria-hidden="true"></li>
+            </ul>
+
+            <div id="lista-vacia" class="gt-vacio" hidden>
+                <span class="gt-vacio-icono" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="5" y="4" width="14" height="17" rx="2" /><path d="M9 4V3h6v1" /><path d="M9 11h6M9 15h4" /></svg>
+                </span>
+                <p class="gt-vacio-titulo js-vacio-titulo">No hay tareas para mostrar.</p>
+                <p class="gt-vacio-texto js-vacio-texto"></p>
+            </div>
+        </section>
+    </div>
+
+    <div id="mensaje" class="gt-toast" role="status" aria-live="polite" hidden></div>
+</div>
+
+@Html.Partial("_PlantillaTarea")
+
+@section scripts {
+    <script src="@Url.Content("~/Scripts/app/tareas/tareas.api.js")"></script>
+    <script src="@Url.Content("~/Scripts/app/tareas/tareas.ui.js")"></script>
+    <script src="@Url.Content("~/Scripts/app/tareas/tareas.pagina.js")"></script>
+}
