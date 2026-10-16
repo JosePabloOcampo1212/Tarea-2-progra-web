@@ -71,6 +71,15 @@
         $app.find('[data-contador="todas"]').text(resumen.Total);
         $app.find('[data-contador="pendientes"]').text(resumen.Pendientes);
         $app.find('[data-contador="completadas"]').text(resumen.Completadas);
+
+        var porcentaje = resumen.Total > 0
+            ? Math.round(resumen.Completadas * 100 / resumen.Total)
+            : 0;
+
+        $app.find('.js-progreso-texto').text(resumen.Completadas + ' de ' + resumen.Total + ' completadas');
+        $app.find('.js-progreso-porcentaje').text(porcentaje + '%');
+        $app.find('.js-progreso-barra').css('width', porcentaje + '%')
+            .parent().attr('aria-valuenow', porcentaje);
     }
 
     function marcarFiltroActivo(filtro) {
