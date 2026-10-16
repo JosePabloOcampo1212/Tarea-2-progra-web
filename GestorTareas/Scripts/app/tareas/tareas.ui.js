@@ -43,6 +43,20 @@
         $vacio.prop('hidden', tareas.length > 0);
     }
 
+    function actualizarConteo(campo) {
+        var $campo = $(campo);
+        var maximo = parseInt($campo.attr('maxlength'), 10);
+        var usados = ($campo.val() || '').length;
+
+        $campo.closest('.gt-campo').find('.js-conteo')
+            .text(usados + '/' + maximo)
+            .toggleClass('gt-conteo-limite', usados >= maximo * 0.9);
+    }
+
+    function marcarOcupado($boton, ocupado) {
+        $boton.prop('disabled', ocupado).attr('aria-busy', ocupado ? 'true' : 'false');
+    }
+
     function mostrarMensaje(texto, tipo) {
         if (!texto) {
             return;
@@ -66,6 +80,8 @@
     Tareas.ui = {
         inicializar: inicializar,
         renderizarLista: renderizarLista,
+        actualizarConteo: actualizarConteo,
+        marcarOcupado: marcarOcupado,
         mostrarMensaje: mostrarMensaje
     };
 })(window, jQuery);

@@ -38,5 +38,12 @@ namespace GestorTareas.Controllers
 
             return Json(ResultadoOperacion.Ok(null, datos), JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult Crear(string titulo, string descripcion)
+        {
+            return Json(Servicio.Crear(titulo, descripcion));
+        }
     }
 }

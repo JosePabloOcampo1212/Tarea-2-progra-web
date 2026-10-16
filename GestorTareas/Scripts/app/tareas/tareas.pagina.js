@@ -16,12 +16,40 @@
             .fail(mostrarErrorDeConexion);
     }
 
+    function procesarOperacion(peticion, $boton) {
+        var resultado = $.Deferred();
+
+        if ($boton) {
+            Tareas.ui.marcarOcupado($boton, true);
+        }
+
+        peticion
+            .done(function (respuesta) {
+                Tareas.ui.mostrarMensaje(respuesta.Mensaje, respuesta.Exito ? 'exito' : 'error');
+                cargarTareas().always(function () {
+                    resultado.resolve(respuesta);
+                });
+            })
+            .fail(function () {
+                mostrarErrorDeConexion();
+                resultado.reject();
+            })
+            .always(function () {
+                if ($boton) {
+                    Tareas.ui.marcarOcupado($boton, false);
+                }
+            });
+
+        return resultado.promise();
+    }
+
     function mostrarErrorDeConexion() {
         Tareas.ui.mostrarMensaje('No se pudo completar la operación. Intente de nuevo.', 'error');
     }
 
     $(function () {
         var $app = $('#app-tareas');
+        var $formCrear = $('#form-crear');
 
         if (!$app.length) {
             return;
@@ -29,6 +57,32 @@
 
         Tareas.api.configurar($app);
         Tareas.ui.inicializar($app);
+
+        $formCrear.find('[maxlength]').each(function () {
+            Tareas.ui.actualizarConteo(this);
+        });
+        $app.on('input', '[maxlength]', function () {
+            Tareas.ui.actualizarConteo(this);
+        });
+
+        $formCrear.on('submit', function (evento) {
+            evento.preventDefault();
+
+            var formulario = this;
+            var titulo = $(formulario).find('[name="titulo"]').val();
+            var descripcion = $(formulario).find('[name="descripcion"]').val();
+
+            procesarOperacion(Tareas.api.crear(titulo, descripcion), $(formulario).find('[type="submit"]'))
+                .done(function (respuesta) {
+                    if (respuesta.Exito) {
+                        formulario.reset();
+                        $(formulario).find('[maxlength]').each(function () {
+                            Tareas.ui.actualizarConteo(this);
+                        });
+                        $(formulario).find('[name="titulo"]').trigger('focus');
+                    }
+                });
+        });
 
         cargarTareas();
     });

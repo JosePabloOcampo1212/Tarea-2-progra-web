@@ -119,6 +119,7 @@
     <Content Include="Scripts\app\tareas\tareas.ui.js" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Tareas\Index.cshtml" />
+    <Content Include="Views\Tareas\_FormularioTarea.cshtml" />
     <Content Include="Views\Tareas\_PlantillaTarea.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />

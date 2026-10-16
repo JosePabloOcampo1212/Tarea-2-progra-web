@@ -1,0 +1,26 @@
+<form id="form-crear" class="gt-tarjeta gt-form" autocomplete="off" novalidate>
+    <h2 class="gt-form-titulo">Nueva tarea</h2>
+
+    <div class="gt-campo">
+        <div class="gt-campo-cabecera">
+            <label for="crear-titulo">Título</label>
+            <span class="gt-conteo js-conteo" aria-hidden="true"></span>
+        </div>
+        <input id="crear-titulo" name="titulo" type="text" maxlength="100" required
+               placeholder="Ej.: Preparar informe semanal" />
+    </div>
+
+    <div class="gt-campo">
+        <div class="gt-campo-cabecera">
+            <label for="crear-descripcion">Descripción</label>
+            <span class="gt-conteo js-conteo" aria-hidden="true"></span>
+        </div>
+        <textarea id="crear-descripcion" name="descripcion" maxlength="500" rows="4" required
+                  placeholder="Detalle de lo que hay que hacer"></textarea>
+    </div>
+
+    <button type="submit" class="gt-btn gt-btn-primario gt-btn-bloque">
+        <svg class="gt-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14" /></svg>
+        Agregar tarea
+    </button>
+</form>

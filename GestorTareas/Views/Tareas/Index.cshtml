@@ -8,7 +8,10 @@
 }
 
 <div id="app-tareas" class="gt-app"
-     data-url-listar="@Url.Action("Listar", "Tareas")">
+     data-url-listar="@Url.Action("Listar", "Tareas")"
+     data-url-crear="@Url.Action("Crear", "Tareas")">
+
+    @Html.AntiForgeryToken()
 
     <header class="gt-encabezado">
         <div>
@@ -19,6 +22,10 @@
     </header>
 
     <div class="gt-layout">
+        <aside class="gt-panel">
+            @Html.Partial("_FormularioTarea")
+        </aside>
+
         <section class="gt-principal" aria-label="Lista de tareas">
             <ul id="lista-tareas" class="gt-lista" aria-busy="true">
                 <li class="gt-esqueleto" aria-hidden="true"></li>
