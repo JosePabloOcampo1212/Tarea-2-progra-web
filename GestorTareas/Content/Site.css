@@ -1,0 +1,125 @@
+:root {
+    --gt-fondo: #f5f6fa;
+    --gt-superficie: #ffffff;
+    --gt-superficie-2: #f0f2f7;
+    --gt-borde: #e3e6ee;
+    --gt-borde-fuerte: #cdd2de;
+    --gt-texto: #1b1f2e;
+    --gt-texto-suave: #61697d;
+    --gt-primario: #4353d6;
+    --gt-primario-hover: #3542b8;
+    --gt-primario-suave: #eceefc;
+    --gt-sobre-primario: #ffffff;
+    --gt-exito: #23875a;
+    --gt-exito-suave: #e3f4ec;
+    --gt-peligro: #c93a3a;
+    --gt-peligro-suave: #fbe9e9;
+    --gt-sombra: 0 1px 2px rgba(20, 24, 40, 0.05), 0 2px 8px rgba(20, 24, 40, 0.04);
+    --gt-sombra-alta: 0 10px 30px rgba(20, 24, 40, 0.16);
+    --gt-radio: 12px;
+    --gt-radio-chico: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --gt-fondo: #0f1117;
+        --gt-superficie: #181b24;
+        --gt-superficie-2: #20242f;
+        --gt-borde: #2a2f3c;
+        --gt-borde-fuerte: #3a4050;
+        --gt-texto: #e8eaf1;
+        --gt-texto-suave: #9ba2b6;
+        --gt-primario: #7d8cf7;
+        --gt-primario-hover: #95a1f9;
+        --gt-primario-suave: #232845;
+        --gt-sobre-primario: #0f1117;
+        --gt-exito: #4cc38a;
+        --gt-exito-suave: #16291f;
+        --gt-peligro: #f07070;
+        --gt-peligro-suave: #2e1719;
+        --gt-sombra: 0 1px 2px rgba(0, 0, 0, 0.3);
+        --gt-sombra-alta: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background: var(--gt-fondo);
+    color: var(--gt-texto);
+    -webkit-font-smoothing: antialiased;
+}
+
+.sitio-contenedor {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.sitio-encabezado {
+    background: var(--gt-superficie);
+    border-bottom: 1px solid var(--gt-borde);
+}
+
+.sitio-encabezado-interior {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+}
+
+.sitio-marca {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gt-texto);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.sitio-logo {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: var(--gt-primario);
+    color: var(--gt-sobre-primario);
+}
+
+.sitio-logo svg {
+    width: 18px;
+    height: 18px;
+}
+
+.sitio-etiqueta {
+    padding: 2px 10px;
+    border-radius: 999px;
+    background: var(--gt-superficie-2);
+    color: var(--gt-texto-suave);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.sitio-principal {
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.sitio-pie {
+    padding: 20px 0;
+    border-top: 1px solid var(--gt-borde);
+    color: var(--gt-texto-suave);
+    font-size: 0.85rem;
+}
+
+:focus-visible {
+    outline: 2px solid var(--gt-primario);
+    outline-offset: 2px;
+}
