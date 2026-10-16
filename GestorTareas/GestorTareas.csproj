@@ -96,9 +96,14 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\TareasController.cs" />
+    <Compile Include="Data\ITareaRepositorio.cs" />
+    <Compile Include="Data\TareaSessionRepositorio.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Dtos\ResultadoOperacion.cs" />
+    <Compile Include="Models\Dtos\TareaDto.cs" />
+    <Compile Include="Models\Tarea.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
 
@@ -117,8 +122,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Services\" />
   </ItemGroup>
 
