@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using GestorTareas.Data;
 using GestorTareas.Models;
 using GestorTareas.Models.Dtos;
@@ -21,9 +22,34 @@ namespace GestorTareas.Services
             _repositorio = repositorio ?? throw new ArgumentNullException(nameof(repositorio));
         }
 
-        public IList<Tarea> Listar()
+        public IList<Tarea> Listar(FiltroTareas filtro)
         {
-            return _repositorio.ObtenerTodas();
+            List<Tarea> tareas = _repositorio.ObtenerTodas();
+
+            switch (filtro)
+            {
+                case FiltroTareas.Pendientes:
+                    return tareas.Where(t => !t.Completada).ToList();
+
+                case FiltroTareas.Completadas:
+                    return tareas.Where(t => t.Completada).ToList();
+
+                default:
+                    return tareas;
+            }
+        }
+
+        public ResumenTareas ObtenerResumen()
+        {
+            List<Tarea> tareas = _repositorio.ObtenerTodas();
+            int completadas = tareas.Count(t => t.Completada);
+
+            return new ResumenTareas
+            {
+                Total = tareas.Count,
+                Completadas = completadas,
+                Pendientes = tareas.Count - completadas
+            };
         }
 
         public ResultadoOperacion Crear(string titulo, string descripcion)

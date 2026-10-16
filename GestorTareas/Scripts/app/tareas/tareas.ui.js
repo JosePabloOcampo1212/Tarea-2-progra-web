@@ -13,6 +13,12 @@
     var DURACION_MENSAJE = 3000;
     var DURACION_ERROR = 5000;
 
+    var TEXTOS_VACIO = {
+        todas: ['Todavía no tiene tareas', 'Cree la primera con el formulario "Nueva tarea".'],
+        pendientes: ['No tiene tareas pendientes', 'Todo al día. ¡Buen trabajo!'],
+        completadas: ['Aún no ha completado tareas', 'Marque el círculo de una tarea para completarla.']
+    };
+
     function inicializar($contenedor) {
         $app = $contenedor;
         $lista = $app.find('#lista-tareas');
@@ -48,14 +54,32 @@
             .attr('aria-label', completada ? 'Marcar como pendiente' : 'Marcar como completada');
     }
 
-    function renderizarLista(tareas) {
+    function renderizarLista(tareas, filtro) {
         $lista.empty().attr('aria-busy', 'false');
 
         $.each(tareas, function (_, tarea) {
             $lista.append(crearElementoTarea(tarea));
         });
 
+        var textos = TEXTOS_VACIO[filtro] || TEXTOS_VACIO.todas;
+        $vacio.find('.js-vacio-titulo').text(textos[0]);
+        $vacio.find('.js-vacio-texto').text(textos[1]);
         $vacio.prop('hidden', tareas.length > 0);
+    }
+
+    function renderizarResumen(resumen) {
+        $app.find('[data-contador="todas"]').text(resumen.Total);
+        $app.find('[data-contador="pendientes"]').text(resumen.Pendientes);
+        $app.find('[data-contador="completadas"]').text(resumen.Completadas);
+    }
+
+    function marcarFiltroActivo(filtro) {
+        $app.find('.js-filtro')
+            .removeClass('gt-filtro-activo')
+            .attr('aria-pressed', 'false')
+            .filter('[data-filtro="' + filtro + '"]')
+            .addClass('gt-filtro-activo')
+            .attr('aria-pressed', 'true');
     }
 
     function mostrarEdicion($item, mostrar) {
@@ -127,6 +151,8 @@
     Tareas.ui = {
         inicializar: inicializar,
         renderizarLista: renderizarLista,
+        renderizarResumen: renderizarResumen,
+        marcarFiltroActivo: marcarFiltroActivo,
         marcarCompletada: marcarCompletada,
         mostrarEdicion: mostrarEdicion,
         mostrarConfirmacion: mostrarConfirmacion,

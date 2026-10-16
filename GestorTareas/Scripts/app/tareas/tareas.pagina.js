@@ -3,15 +3,18 @@
 
     var Tareas = window.Tareas;
 
+    var filtroActual = 'todas';
+
     function cargarTareas() {
-        return Tareas.api.listar()
+        return Tareas.api.listar(filtroActual)
             .done(function (respuesta) {
                 if (!respuesta.Exito) {
                     Tareas.ui.mostrarMensaje(respuesta.Mensaje, 'error');
                     return;
                 }
 
-                Tareas.ui.renderizarLista(respuesta.Datos.Tareas);
+                Tareas.ui.renderizarLista(respuesta.Datos.Tareas, filtroActual);
+                Tareas.ui.renderizarResumen(respuesta.Datos.Resumen);
             })
             .fail(mostrarErrorDeConexion);
     }
@@ -61,6 +64,9 @@
 
         Tareas.api.configurar($app);
         Tareas.ui.inicializar($app);
+
+        filtroActual = Tareas.estadoCliente.obtenerFiltro();
+        Tareas.ui.marcarFiltroActivo(filtroActual);
 
         $formCrear.find('[maxlength]').each(function () {
             Tareas.ui.actualizarConteo(this);
@@ -143,6 +149,14 @@
             } else if (!$item.find('.js-confirmacion').prop('hidden')) {
                 Tareas.ui.mostrarConfirmacion($item, false);
             }
+        });
+
+        $app.on('click', '.js-filtro', function () {
+            filtroActual = $(this).attr('data-filtro');
+
+            Tareas.estadoCliente.guardarFiltro(filtroActual);
+            Tareas.ui.marcarFiltroActivo(filtroActual);
+            cargarTareas();
         });
 
         cargarTareas();

@@ -30,6 +30,8 @@
         </aside>
 
         <section class="gt-principal" aria-label="Lista de tareas">
+            @Html.Partial("_FiltrosTareas")
+
             <ul id="lista-tareas" class="gt-lista" aria-busy="true">
                 <li class="gt-esqueleto" aria-hidden="true"></li>
                 <li class="gt-esqueleto" aria-hidden="true"></li>
@@ -52,6 +54,7 @@
 @Html.Partial("_PlantillaTarea")
 
 @section scripts {
+    <script src="@Url.Content("~/Scripts/app/tareas/tareas.estado-cliente.js")"></script>
     <script src="@Url.Content("~/Scripts/app/tareas/tareas.api.js")"></script>
     <script src="@Url.Content("~/Scripts/app/tareas/tareas.ui.js")"></script>
     <script src="@Url.Content("~/Scripts/app/tareas/tareas.pagina.js")"></script>

@@ -103,6 +103,8 @@
     </Compile>
     <Compile Include="Models\Dtos\ResultadoOperacion.cs" />
     <Compile Include="Models\Dtos\TareaDto.cs" />
+    <Compile Include="Models\FiltroTareas.cs" />
+    <Compile Include="Models\ResumenTareas.cs" />
     <Compile Include="Models\Tarea.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ITareaService.cs" />
@@ -115,10 +117,12 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
     <Content Include="Scripts\app\tareas\tareas.api.js" />
+    <Content Include="Scripts\app\tareas\tareas.estado-cliente.js" />
     <Content Include="Scripts\app\tareas\tareas.pagina.js" />
     <Content Include="Scripts\app\tareas\tareas.ui.js" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Tareas\Index.cshtml" />
+    <Content Include="Views\Tareas\_FiltrosTareas.cshtml" />
     <Content Include="Views\Tareas\_FormularioTarea.cshtml" />
     <Content Include="Views\Tareas\_PlantillaTarea.cshtml" />
     <Content Include="Views\Web.config" />

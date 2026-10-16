@@ -6,7 +6,9 @@ namespace GestorTareas.Services
 {
     public interface ITareaService
     {
-        IList<Tarea> Listar();
+        IList<Tarea> Listar(FiltroTareas filtro);
+
+        ResumenTareas ObtenerResumen();
 
         ResultadoOperacion Crear(string titulo, string descripcion);
 

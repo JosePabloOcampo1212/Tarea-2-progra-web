@@ -217,6 +217,59 @@
     color: var(--gt-peligro);
 }
 
+.gt-filtros {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 4px;
+    margin-bottom: 16px;
+    border-radius: var(--gt-radio);
+    background: var(--gt-superficie-2);
+}
+
+.gt-filtro {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border: 0;
+    border-radius: var(--gt-radio-chico);
+    background: transparent;
+    color: var(--gt-texto-suave);
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.gt-filtro:hover {
+    color: var(--gt-texto);
+}
+
+.gt-filtro-activo {
+    background: var(--gt-superficie);
+    color: var(--gt-texto);
+    box-shadow: var(--gt-sombra);
+}
+
+.gt-contador {
+    min-width: 22px;
+    padding: 0 7px;
+    border-radius: 999px;
+    background: var(--gt-borde);
+    color: var(--gt-texto-suave);
+    font-size: 0.75rem;
+    line-height: 20px;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+.gt-filtro-activo .gt-contador {
+    background: var(--gt-primario-suave);
+    color: var(--gt-primario);
+}
+
 .gt-lista {
     display: flex;
     flex-direction: column;
@@ -489,6 +542,16 @@
 @media (max-width: 480px) {
     .gt-encabezado h1 {
         font-size: 1.6rem;
+    }
+
+    .gt-filtros {
+        display: flex;
+    }
+
+    .gt-filtro {
+        flex: 1;
+        justify-content: center;
+        padding: 7px 8px;
     }
 
     .gt-vista {

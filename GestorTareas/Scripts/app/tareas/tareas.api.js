@@ -31,10 +31,11 @@
     Tareas.api = {
         configurar: configurar,
 
-        listar: function () {
+        listar: function (filtro) {
             return $.ajax({
                 url: urls.listar,
                 type: 'GET',
+                data: { filtro: filtro },
                 dataType: 'json',
                 cache: false
             });

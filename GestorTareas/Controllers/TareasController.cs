@@ -1,6 +1,8 @@
+using System;
 using System.Linq;
 using System.Web.Mvc;
 using GestorTareas.Data;
+using GestorTareas.Models;
 using GestorTareas.Models.Dtos;
 using GestorTareas.Services;
 
@@ -29,11 +31,17 @@ namespace GestorTareas.Controllers
         }
 
         [HttpGet]
-        public JsonResult Listar()
+        public JsonResult Listar(string filtro)
         {
+            if (!Enum.TryParse(filtro, true, out FiltroTareas filtroElegido))
+            {
+                filtroElegido = FiltroTareas.Todas;
+            }
+
             var datos = new
             {
-                Tareas = Servicio.Listar().Select(TareaDto.Desde).ToList()
+                Tareas = Servicio.Listar(filtroElegido).Select(TareaDto.Desde).ToList(),
+                Resumen = Servicio.ObtenerResumen()
             };
 
             return Json(ResultadoOperacion.Ok(null, datos), JsonRequestBehavior.AllowGet);
