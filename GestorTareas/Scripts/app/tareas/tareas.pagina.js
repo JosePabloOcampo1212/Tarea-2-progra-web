@@ -47,7 +47,7 @@
     }
 
     function mostrarErrorDeConexion() {
-        Tareas.ui.mostrarMensaje('No se pudo completar la operación. Intente de nuevo.', 'error');
+        Tareas.ui.mostrarMensaje('No se pudo completar la operacion. Intente de nuevo.', 'error');
     }
 
     function idDeTarea(elemento) {

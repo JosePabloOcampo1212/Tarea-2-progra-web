@@ -14,9 +14,9 @@
     var DURACION_ERROR = 5000;
 
     var TEXTOS_VACIO = {
-        todas: ['Todavía no tiene tareas', 'Cree la primera con el formulario "Nueva tarea".'],
-        pendientes: ['No tiene tareas pendientes', 'Todo al día. ¡Buen trabajo!'],
-        completadas: ['Aún no ha completado tareas', 'Marque el círculo de una tarea para completarla.']
+        todas: ['Todavia no tiene tareas', 'Cree la primera con el formulario "Nueva tarea".'],
+        pendientes: ['No tiene tareas pendientes', 'Todo al dia. Buen trabajo!'],
+        completadas: ['Aun no ha completado tareas', 'Marque el circulo de una tarea para completarla.']
     };
 
     function inicializar($contenedor) {

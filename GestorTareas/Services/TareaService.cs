@@ -125,22 +125,22 @@ namespace GestorTareas.Services
         {
             if (string.IsNullOrWhiteSpace(titulo))
             {
-                return "El título es obligatorio.";
+                return "El titulo es obligatorio.";
             }
 
             if (string.IsNullOrWhiteSpace(descripcion))
             {
-                return "La descripción es obligatoria.";
+                return "La descripcion es obligatoria.";
             }
 
             if (titulo.Trim().Length > MaximoTitulo)
             {
-                return "El título no puede superar " + MaximoTitulo + " caracteres.";
+                return "El titulo no puede superar " + MaximoTitulo + " caracteres.";
             }
 
             if (descripcion.Trim().Length > MaximoDescripcion)
             {
-                return "La descripción no puede superar " + MaximoDescripcion + " caracteres.";
+                return "La descripcion no puede superar " + MaximoDescripcion + " caracteres.";
             }
 
             return null;
